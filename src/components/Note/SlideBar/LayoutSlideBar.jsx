@@ -2,6 +2,7 @@ import SlideBarSearchField from "./SlideBarSearchField"
 import { Suspense } from 'react'
 import NoteList from "@components/Note/NoteList/NoteList"
 import EditButton from "../EditButton"
+import { Footer } from './Footer'
 import { useTranslation } from '@/app/i18n'
 
 export default async function LayoutSlideBar({params}) {
@@ -21,6 +22,8 @@ export default async function LayoutSlideBar({params}) {
       <Suspense fallback={<>loading list....</>}>
         <NoteList />
       </Suspense>
+
+      <Footer lng={params.lng} />
     </div>
   </>
 }
