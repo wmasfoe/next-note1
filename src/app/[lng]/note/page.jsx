@@ -1,6 +1,9 @@
-export default function Page({params}) {
+import { useTranslation } from '@/app/i18n/index'
+
+export default async function Page({params}) {
+
+  const { t } = await useTranslation(params.lng)
   return <div>
-    点击左侧查看笔记详情
-    {params.lng}
+    {t('initText')}
   </div>
 }
