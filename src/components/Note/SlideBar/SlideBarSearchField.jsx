@@ -1,8 +1,9 @@
 'use client';
 import { useRouter, usePathname } from 'next/navigation'
-import { useTransition } from 'react'
+import { useTransition, Suspense } from 'react'
+import { useTranslation } from '@/app/i18n'
 
-export default function SlideBarSearchField() {
+export default function SlideBarSearchField({lang}) {
 
   const { replace } = useRouter()
   const pathname = usePathname()
@@ -21,8 +22,19 @@ export default function SlideBarSearchField() {
     })
   }
 
+  return <Suspense fallback={<>loading search</>}>
+    <I18nInput lng={lang} onChange={handleSearch} />
+  </Suspense>
+}
+
+async function I18nInput({
+  lng, onChange
+}) {
+
+  const { t } = await useTranslation(lng)
+
   return <>
-    <input type="text" placeholder="SEARCH" className="
+    <input type="text" placeholder={t('search')} className="
       bg-gray-500
       w-40
       h-10
@@ -31,7 +43,7 @@ export default function SlideBarSearchField() {
       px-3
       text-center
       focus:outline-dashed focus:outline-2 focus:outline-slate-500"
-      onChange={(e) => handleSearch(e.target.value)}
+      onChange={onChange}
       >
     </input>
   </>

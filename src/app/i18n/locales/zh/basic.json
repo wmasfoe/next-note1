@@ -3,5 +3,7 @@
   "initText": "点击左侧笔记查阅内容 🥺",
   "search": "搜索",
   "mainPageText": "你来到了一片荒芜之地，这里什么都没有",
-  "goToHome": "返回主页"
+  "goToHome": "返回主页",
+  "cancel": "取消",
+  "delete": "删除"
 }
