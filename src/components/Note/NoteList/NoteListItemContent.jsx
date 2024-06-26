@@ -57,6 +57,7 @@ export default function Content({ id, expandedDate, children, title }) {
         group-hover/item:visible
         duration-75
         ${isFocus ? 'bg-gray-600' : ''}
+        w-full
       `}
       onClickCapture={handleNoteContent}
       onMouseEnter={handleMouseEnter}
@@ -88,7 +89,7 @@ export default function Content({ id, expandedDate, children, title }) {
         {
           loading ?
             <Loading/> :
-            <span data-v-61cac62e=""><svg width="100%" height="100%" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 10V44H39V10H9Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"></path><path d="M20 20V33" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M28 20V33" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4 10H44" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16 10L19.289 4H28.7771L32 10H16Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"></path></svg></span>
+            <span><svg width="100%" height="100%" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 10V44H39V10H9Z" fill="none" stroke="currentColor" stroke-width="4" strokeLinejoin="round"></path><path d="M20 20V33" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"></path><path d="M28 20V33" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"></path><path d="M4 10H44" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"></path><path d="M16 10L19.289 4H28.7771L32 10H16Z" fill="none" stroke="currentColor" strokeWidth="4" strokeLinejoin="round"></path></svg></span>
         }
         
       </button>

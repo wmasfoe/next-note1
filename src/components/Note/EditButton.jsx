@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import ActionButton from './ActionButton'
-export default function EditButton({noteId, children}) {
+export default function EditButton({noteId, children, className}) {
   const router = useRouter()
 
   const handleClick = () => {
@@ -14,6 +14,7 @@ export default function EditButton({noteId, children}) {
   }
   
   return <ActionButton
+    className={className}
     onClick={handleClick}
   >
     { children }

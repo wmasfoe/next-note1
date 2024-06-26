@@ -11,13 +11,13 @@ export default async function LayoutSlideBar({params}) {
 
   return <>
     {/* slide-bar */}
-    <div className="bg-gray-800 w-fit h-full flex flex-col items-start">
+    <div className="bg-gray-800 w-80 h-full flex flex-col items-start">
       {/* title */}
       <div className="flex justify-center items-center h-16 text-3xl">ABC</div>
       {/* header */}
-      <div className="bg-gray-700 flex justify-between items-center px-5 h-16 text-xl gap-3 border-solid border-gray-300">
+      <div className="bg-gray-700 flex justify-between items-center px-5 h-16 text-xl gap-3 border-solid border-gray-300 w-full">
         <SlideBarSearchField lang={params.lng} />
-        <EditButton>{t('new')}</EditButton>
+        <EditButton className={"w-24"}>{t('new')}</EditButton>
       </div>
       <Suspense fallback={<>loading list....</>}>
         <NoteList />
