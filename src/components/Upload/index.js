@@ -1,54 +1,44 @@
 'use client'
-import { useTransition } from 'react'
+
+import { useRef } from 'react'
 import { useRouter } from 'next/navigation'
+import { importNote } from '@/actions/importNote'
 
-export default function Upload() {
-
-  const [isPending, startTransition] = useTransition();
+export default function SidebarImport() {
   const router = useRouter()
+  const submitRef = useRef(null)
+  const formRef = useRef(null)
 
-  async function handleInputChange(e) {
-    const fileInput = e.target
+  async function upload(formData) {
 
-    if (!fileInput.files || fileInput.files.length === 0) {
+    if (!file) {
       console.warn("files list is empty");
       return;
     }
 
-    const file = fileInput.files[0];
-
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
-      const response = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        console.error("something went wrong");
-        return;
-      }
-
-      const data = await response.json();
-      startTransition(() => router.push(`/note/${data.uid}`));
-      // 刷新客户端缓存
-      startTransition(() => router.refresh());
+      const data = await importNote(formData);
+      router.push(`/note/${data.uid}`)
 
     } catch (error) {
       console.error("something went wrong");
     }
 
-    // 重置 file input
-    e.target.type = "text";
-    e.target.type = "file";
+    formRef.current?.reset()
   }
 
-  return <>
-    <div>
-      <label for="file">Import .md File</label>
-      <input type="file" id="file" name="file" multiple hidden onChange={handleInputChange} />
-    </div>
-  </>
+  function customSubmit() {
+    submitRef.current?.click()
+  }
+
+  return (
+    <form ref={formRef} action={upload}>
+      <div style={{ textAlign: "center" }}>
+        <label htmlFor="file" style={{ cursor: 'pointer' }}>Import .md File</label>
+        <input type="file" id="file" name="file" style={{ position : "absolute", clip: "rect(0 0 0 0)" }} onChange={ customSubmit } accept=".md" />
+      </div>
+      <button type='submit' ref={submitRef} hidden></button>
+    </form>
+    
+  )
 }
